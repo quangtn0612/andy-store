@@ -1,0 +1,59 @@
+.PassportCover{
+   border: 1px solid black;
+   margin: 10px;
+   box-shadow: 2px 2px 4px #000000;
+   opacity: 0.7;
+}
+.PassportCover:hover{
+   opacity: 1;
+}
+.PassportCover-Clicked{
+   opacity: 1;
+}
+.PassportContainer{
+   display: flex;
+}
+.currentPassportCover{
+   position: relative;
+}
+.currentCharm{
+   position: absolute;
+   top: 270px;
+   left: 260px;
+   width: 90px;
+}
+.passCurrentName{
+   position: absolute;
+   top: 374px;
+   left: 99px;
+   width: 350px;
+   text-align: center;
+   text-transform: uppercase;
+   opacity: 0.8;
+   color: rgb(119, 72, 34);
+   z-index: 3;
+   -webkit-transform: rotate(-10deg);
+   -moz-transform: rotate(-10deg);
+   -ms-transform: rotate(-10deg);
+   -o-transform: rotate(-10deg);
+   transform: rotate(-10deg);
+   font-size: 23px;
+}
+.walletCurrentName{
+   position: absolute;
+   top: 213px;
+   left: 226px;
+   width: 350px;
+   font-size: 17px;
+   font-size: 17px;
+   text-align: center;
+   text-transform: uppercase;
+   opacity: 0.8;
+   color: rgb(119, 72, 34);
+   z-index: 3;
+   -webkit-transform: rotate(-10deg);
+   -moz-transform: rotate(-10deg);
+   -ms-transform: rotate(-10deg);
+   -o-transform: rotate(-10deg);
+   transform: rotate(-10deg);
+}

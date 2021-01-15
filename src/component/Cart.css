@@ -1,0 +1,22 @@
+.cartForm{
+   padding: 30px 30px 30px 30px;
+   box-shadow:0px 0px 8px grey;  
+   margin-bottom: 100px;
+   margin: 10px;
+}
+
+.total{
+   text-align: right;
+}
+
+.cartText{
+   text-transform: uppercase;
+}
+
+.AddToCartButton{
+   margin: 10px 0px;
+}
+
+.cartRow{
+   margin: 20px 0px;
+}
