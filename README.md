@@ -1,3 +1,10 @@
+# Andy store web application
+Andy store is where you can customize and purchase your own passport covers and wallets
+
+## Technology used:
+HTML, CSS, Javascript (ES6+), React, Reactstrap
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
