@@ -5,13 +5,11 @@ import { DataContext } from '../context/DataContext';
 
 export default class Wallet extends Component{   
    static contextType = DataContext;
-   
    render()
    {
-      const { wallets, walletActiveId, onKeyUp, chooseWallet, walletOnClickedItem, wallet } = this.context; //passport state
+      const { wallets, walletActiveId, onKeyUp, chooseWallet, walletOnClickedItem } = this.context; //passport state
       
-      const { Name } = this.context.currentItemOfWallet; //current item in cart
-      
+      const { Name, item } = this.context.currentItemOfWallet; //current item in cart
       
       return(
       <Container>
@@ -35,7 +33,7 @@ export default class Wallet extends Component{
             </Row>
          </Col>
          <Col lg={6}>
-         <img src={wallet} className="currentPassportCover"/>
+         <img src={item} className="currentPassportCover"/>
          <p className="walletCurrentName">{Name}</p>
          </Col>
 

@@ -8,10 +8,11 @@ export default class PassportCover extends Component{
    
    render()
    {
-      const { passportCovers, charms, choosePassportCover, PassportCover,
-      onKeyUp, chooseCharm, passportOnClickedItem, charmOnClickedItem, passportActiveId, charmActiveId, Charm} = this.context; //passport state
+      const { passportCovers, charms, choosePassportCover,
+      onKeyUp, chooseCharm, passportOnClickedItem, charmOnClickedItem, 
+      passportActiveId, charmActiveId} = this.context; //passport state
       
-      const { Name } = this.context.currentItemOfPassport; //current item in cart
+      const { Name, item, Charm } = this.context.currentItemOfPassport; //current item in cart
 
       
       return(
@@ -45,14 +46,10 @@ export default class PassportCover extends Component{
             </Row>
          </Col>
          <Col lg={4}>
-         <img src={PassportCover} className="currentPassportCover"/>
+         <img src={item} className="currentPassportCover"/>
          <img src={Charm} className="currentCharm"/>
          <p className="passCurrentName">{Name}</p>
          </Col>
-
-         
-         
-
       </Row>
       </Container>
       )
