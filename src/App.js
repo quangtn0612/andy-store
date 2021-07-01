@@ -26,9 +26,7 @@ function App() {
       </div>
     </Router> 
     <Cart />
-
     </DataProvider>
-    
   );
 }
 
