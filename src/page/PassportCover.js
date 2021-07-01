@@ -13,7 +13,7 @@ export default class PassportCover extends Component {
 
       const { Name, item, Charm } = this.context.currentItemOfPassport; //current item in cart
 
-
+      console.log(passportActiveId);
       return (
          <Container>
             <Row>
@@ -22,8 +22,10 @@ export default class PassportCover extends Component {
                      <h4>Pick your color</h4>
                      <p>
                         {passportCovers.map(({ id, src }) => (
-                           <img className={passportActiveId === id ? 'PassportCover PassportCover-Clicked' : 'PassportCover'} src={src} width={60} height={60} key={id}
-                              onClick={() => { choosePassportCover({ id, src }); passportOnClickedItem(id) }} ></img>
+                           <img 
+                           className={passportActiveId === id ? 'PassportCover PassportCover-Clicked' : 'PassportCover'} 
+                           src={src} width={60} height={60} key={id} alt={id}
+                           onClick={() => { choosePassportCover({ id, src }); passportOnClickedItem(id) }} ></img>
                         ))}
                      </p>
                   </Row>
@@ -31,7 +33,9 @@ export default class PassportCover extends Component {
                      <h4>Pick your charm</h4>
                      <p>
                         {charms.map(({ id, src }) => (
-                           <img className={charmActiveId === id ? 'PassportCover PassportCover-Clicked' : 'PassportCover'} src={src} width={60} height={60} key={id}
+                           <img 
+                              className={charmActiveId === id ? 'PassportCover PassportCover-Clicked' : 'PassportCover'} 
+                              src={src} width={60} height={60} key={id} alt={id}
                               onClick={(event) => { chooseCharm(event); charmOnClickedItem(id) }} ></img>
                         ))}
                      </p>
@@ -45,8 +49,16 @@ export default class PassportCover extends Component {
                   </Row>
                </Col>
                <Col lg={4}>
-                  <img src={item} className="currentPassportCover" />
-                  <img src={Charm} className="currentCharm" />
+                  <img 
+                     src={item} 
+                     alt={item} 
+                     className="currentPassportCover" 
+                  />
+                  <img 
+                     src={Charm} 
+                     alt={Charm} 
+                     className="currentCharm" 
+                  />
                   <p className="passCurrentName">{Name}</p>
                </Col>
             </Row>

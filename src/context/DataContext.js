@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 export const DataContext = React.createContext();
 
@@ -127,73 +128,75 @@ export class DataProvider extends Component {
                src: 'images/charm/13_2.png'
             }
          ],
-         wallets: [
-            {
-               id: 1,
-               src: 'images/wallet/1.jpg'
-            },
-            {
-               id: 2,
-               src: 'images/wallet/2.jpg'
-            },
-            {
-               id: 3,
-               src: 'images/wallet/3.jpg'
-            },
-            {
-               id: 4,
-               src: 'images/wallet/4.jpg'
-            },
-            {
-               id: 5,
-               src: 'images/wallet/5.jpg'
-            },
-            {
-               id: 6,
-               src: 'images/wallet/6.jpg'
-            },
-            {
-               id: 7,
-               src: 'images/wallet/7.jpg'
-            },
-            {
-               id: 8,
-               src: 'images/wallet/8.jpg'
-            },
-            {
-               id: 9,
-               src: 'images/wallet/9.jpg'
-            },
-            {
-               id: 10,
-               src: 'images/wallet/10.jpg'
-            },
-            {
-               id: 11,
-               src: 'images/wallet/11.jpg'
-            },
-            {
-               id: 12,
-               src: 'images/wallet/12.jpg'
-            },
-            {
-               id: 13,
-               src: 'images/wallet/13.jpg'
-            },
-            {
-               id: 14,
-               src: 'images/wallet/14.jpg'
-            },
-            {
-               id: 15,
-               src: 'images/wallet/15.jpg'
-            }
-         ],
-         // currentItem: {
-         //    PassportCover: 'images/passport/1.jpg',
-         //    Charm: 'images/charm/0.png',
-         //    Name: 'QUANG'
-         // },
+         wallets: []
+         // [
+         //    {
+         //       id: 1,
+         //       src: 'images/wallet/1.jpg'
+         //    },
+         //    {
+         //       id: 2,
+         //       src: 'images/wallet/2.jpg'
+         //    },
+         //    {
+         //       id: 3,
+         //       src: 'images/wallet/3.jpg'
+         //    },
+         //    {
+         //       id: 4,
+         //       src: 'images/wallet/4.jpg'
+         //    },
+         //    {
+         //       id: 5,
+         //       src: 'images/wallet/5.jpg'
+         //    },
+         //    {
+         //       id: 6,
+         //       src: 'images/wallet/6.jpg'
+         //    },
+         //    {
+         //       id: 7,
+         //       src: 'images/wallet/7.jpg'
+         //    },
+         //    {
+         //       id: 8,
+         //       src: 'images/wallet/8.jpg'
+         //    },
+         //    {
+         //       id: 9,
+         //       src: 'images/wallet/9.jpg'
+         //    },
+         //    {
+         //       id: 10,
+         //       src: 'images/wallet/10.jpg'
+         //    },
+         //    {
+         //       id: 11,
+         //       src: 'images/wallet/11.jpg'
+         //    },
+         //    {
+         //       id: 12,
+         //       src: 'images/wallet/12.jpg'
+         //    },
+         //    {
+         //       id: 13,
+         //       src: 'images/wallet/13.jpg'
+         //    },
+         //    {
+         //       id: 14,
+         //       src: 'images/wallet/14.jpg'
+         //    },
+         //    {
+         //       id: 15,
+         //       src: 'images/wallet/15.jpg'
+         //    }
+         // ]
+         ,
+         currentItem: {
+            PassportCover: 'images/passport/1.jpg',
+            Charm: 'images/charm/0.png',
+            Name: 'QUANG'
+         },
          currentItemOfPassport: {
             item: 'images/passport/1.jpg',
             Charm: 'images/charm/1.png',
@@ -223,6 +226,17 @@ export class DataProvider extends Component {
 
       this.updateCart = this.updateCart.bind(this);
       this.deleteItem = this.deleteItem.bind(this);
+   }
+
+   componentDidMount() {
+      axios.get('http://localhost:8001/wallets/')
+      .then(res=>{
+         if(res.data.length>0){
+            this.setState({
+               wallets: res.data
+            })
+         }
+      })
    }
 
 
@@ -275,6 +289,7 @@ export class DataProvider extends Component {
       this.setState({
          walletActiveId: id
       })
+      console.log(id)
    }
    charmOnClickedItem(id) {
       this.setState({
@@ -298,7 +313,6 @@ export class DataProvider extends Component {
             }
          })
       }
-      console.log(currentTab);
    }
 
    deleteItem(id) {

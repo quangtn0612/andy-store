@@ -76,9 +76,9 @@ export default class Cart extends Component{
                         <tbody>
                         { cartItems.map((item, id)=>(
                            <tr>
-                              <td>{item.item.split('/').slice(1,2)}</td>
-                              <td><img src={item.item} width={40} height={40} /></td>
-                              <td><img src={item.Charm} width={40} height={40} /></td>
+                              <td>{console.log(item)}</td>
+                              <td><img src={item.item} width={40} height={40} alt={item.item}/></td>
+                              <td><img src={item.Charm} width={40} height={40} alt={item.Charm}/></td>
                               <td><span className="cartText">{item.Name}</span></td>
                               <td><Button color="secondary" onClick={()=>deleteItem(id)}>Delete</Button></td>
                            </tr>

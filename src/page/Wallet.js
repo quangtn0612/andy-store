@@ -7,9 +7,8 @@ export default class Wallet extends Component {
    static contextType = DataContext;
    render() {
       const { wallets, walletActiveId, onKeyUp, chooseWallet, walletOnClickedItem } = this.context; //passport state
-
       const { Name, item } = this.context.currentItemOfWallet; //current item in cart
-
+      // console.log(wallets);
       return (
          <Container>
             <Row>
@@ -17,10 +16,17 @@ export default class Wallet extends Component {
                   <Row>
                      <h4>Pick your color</h4>
                      <p>
-                        {wallets.map(({ id, src }) => (
-                           <img className={walletActiveId === id ? 'PassportCover PassportCover-Clicked' : 'PassportCover'} src={src} width={60} height={60} key={id}
-                              onClick={() => { chooseWallet({ id, src }); walletOnClickedItem(id) }} ></img>
-                        ))}
+                        {wallets.map(({ _id, src }) => (
+                           <img 
+                              className={walletActiveId === _id ? 'PassportCover PassportCover-Clicked' : 'PassportCover'} 
+                              src={src} alt={_id}
+                              width={60} height={60} 
+                              key={_id}
+                              onClick={() => { chooseWallet({ _id, src }); walletOnClickedItem(_id) }} 
+                           />
+                        ))
+                        
+                        }
                      </p>
                   </Row>
                   <Row>
@@ -32,7 +38,7 @@ export default class Wallet extends Component {
                   </Row>
                </Col>
                <Col lg={6}>
-                  <img src={item} className="currentPassportCover" />
+                  <img src={item} className="currentPassportCover" alt={item}/>
                   <p className="walletCurrentName">{Name}</p>
                </Col>
 

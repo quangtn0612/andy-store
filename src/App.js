@@ -9,7 +9,7 @@ import {
   Route
 } from "react-router-dom";
 import Cart from './component/Cart'
-import { DataContext, DataProvider } from './context/DataContext'
+import { DataProvider } from './context/DataContext'
 
 function App() {
   return (
