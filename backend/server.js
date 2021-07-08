@@ -25,10 +25,14 @@ connection.once('open', () => {
 })
 
 const walletsRouter = require('./routes/wallets');
+const passportsRouter = require('./routes/passports');
+const charmsRouter = require('./routes/charms');
 
 //API endpoints
 app.get("/",(req,res)=>res.status(200).send("HELLO WORLD!"));
 app.use("/wallets", walletsRouter);
+app.use("/passports", passportsRouter);
+app.use("/charms", charmsRouter);
 
 //Listener
 app.listen(port, () => {

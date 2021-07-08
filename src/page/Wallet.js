@@ -8,7 +8,6 @@ export default class Wallet extends Component {
    render() {
       const { wallets, walletActiveId, onKeyUp, chooseWallet, walletOnClickedItem } = this.context; //passport state
       const { Name, item } = this.context.currentItemOfWallet; //current item in cart
-      // console.log(wallets);
       return (
          <Container>
             <Row>

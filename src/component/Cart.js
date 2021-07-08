@@ -75,8 +75,9 @@ export default class Cart extends Component{
                         </thead>
                         <tbody>
                         { cartItems.map((item, id)=>(
+                           
                            <tr>
-                              <td>{console.log(item)}</td>
+                              <td>{item.item.split('/')[1]}</td>
                               <td><img src={item.item} width={40} height={40} alt={item.item}/></td>
                               <td><img src={item.Charm} width={40} height={40} alt={item.Charm}/></td>
                               <td><span className="cartText">{item.Name}</span></td>

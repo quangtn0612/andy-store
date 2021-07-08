@@ -13,7 +13,6 @@ export default class PassportCover extends Component {
 
       const { Name, item, Charm } = this.context.currentItemOfPassport; //current item in cart
 
-      console.log(passportActiveId);
       return (
          <Container>
             <Row>
@@ -21,22 +20,22 @@ export default class PassportCover extends Component {
                   <Row>
                      <h4>Pick your color</h4>
                      <p>
-                        {passportCovers.map(({ id, src }) => (
+                        {passportCovers.map(({ _id, src }) => (
                            <img 
-                           className={passportActiveId === id ? 'PassportCover PassportCover-Clicked' : 'PassportCover'} 
-                           src={src} width={60} height={60} key={id} alt={id}
-                           onClick={() => { choosePassportCover({ id, src }); passportOnClickedItem(id) }} ></img>
+                           className={passportActiveId === _id ? 'PassportCover PassportCover-Clicked' : 'PassportCover'} 
+                           src={src} width={60} height={60} key={_id} alt={_id}
+                           onClick={() => { choosePassportCover({ _id, src }); passportOnClickedItem(_id) }} ></img>
                         ))}
                      </p>
                   </Row>
                   <Row>
                      <h4>Pick your charm</h4>
                      <p>
-                        {charms.map(({ id, src }) => (
+                        {charms.map(({ _id, src }) => (
                            <img 
-                              className={charmActiveId === id ? 'PassportCover PassportCover-Clicked' : 'PassportCover'} 
-                              src={src} width={60} height={60} key={id} alt={id}
-                              onClick={(event) => { chooseCharm(event); charmOnClickedItem(id) }} ></img>
+                              className={charmActiveId === _id ? 'PassportCover PassportCover-Clicked' : 'PassportCover'} 
+                              src={src} width={60} height={60} key={_id} alt={_id}
+                              onClick={(event) => { chooseCharm(event); charmOnClickedItem(_id) }} ></img>
                         ))}
                      </p>
                   </Row>

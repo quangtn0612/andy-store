@@ -8,190 +8,9 @@ export class DataProvider extends Component {
       super();
       this.state = {
          cartItems: [],
-         passportCovers: [
-            {
-               id: 1,
-               src: 'images/passport/1.jpg'
-            },
-            {
-               id: 2,
-               src: 'images/passport/2.jpg'
-            },
-            {
-               id: 3,
-               src: 'images/passport/3.jpg'
-            },
-            {
-               id: 4,
-               src: 'images/passport/4.jpg'
-            },
-            {
-               id: 5,
-               src: 'images/passport/5.jpg'
-            },
-            {
-               id: 6,
-               src: 'images/passport/6.jpg'
-            },
-            {
-               id: 7,
-               src: 'images/passport/7.jpg'
-            },
-            {
-               id: 8,
-               src: 'images/passport/8.jpg'
-            },
-            {
-               id: 9,
-               src: 'images/passport/9.jpg'
-            },
-            {
-               id: 10,
-               src: 'images/passport/10.jpg'
-            },
-            {
-               id: 11,
-               src: 'images/passport/11.jpg'
-            },
-            {
-               id: 12,
-               src: 'images/passport/12.jpg'
-            },
-            {
-               id: 13,
-               src: 'images/passport/13.jpg'
-            },
-            {
-               id: 14,
-               src: 'images/passport/14.jpg'
-            },
-            {
-               id: 15,
-               src: 'images/passport/15.jpg'
-            }
-         ],
-         charms: [
-            {
-               id: 0,
-               src: 'images/charm/0.png'
-            },
-            {
-               id: 1,
-               src: 'images/charm/1.png'
-            },
-            {
-               id: 2,
-               src: 'images/charm/2.png'
-            },
-            {
-               id: 3,
-               src: 'images/charm/3.png'
-            },
-            {
-               id: 4,
-               src: 'images/charm/4.png'
-            },
-            {
-               id: 5,
-               src: 'images/charm/5.png'
-            },
-            {
-               id: 6,
-               src: 'images/charm/6.png'
-            },
-            {
-               id: 7,
-               src: 'images/charm/7.png'
-            },
-            {
-               id: 8,
-               src: 'images/charm/8.png'
-            },
-            {
-               id: 9,
-               src: 'images/charm/9.png'
-            },
-            {
-               id: 10,
-               src: 'images/charm/10.png'
-            },
-            {
-               id: 11,
-               src: 'images/charm/11.png'
-            },
-            {
-               id: 12,
-               src: 'images/charm/12_2.png'
-            },
-            {
-               id: 13,
-               src: 'images/charm/13_2.png'
-            }
-         ],
-         wallets: []
-         // [
-         //    {
-         //       id: 1,
-         //       src: 'images/wallet/1.jpg'
-         //    },
-         //    {
-         //       id: 2,
-         //       src: 'images/wallet/2.jpg'
-         //    },
-         //    {
-         //       id: 3,
-         //       src: 'images/wallet/3.jpg'
-         //    },
-         //    {
-         //       id: 4,
-         //       src: 'images/wallet/4.jpg'
-         //    },
-         //    {
-         //       id: 5,
-         //       src: 'images/wallet/5.jpg'
-         //    },
-         //    {
-         //       id: 6,
-         //       src: 'images/wallet/6.jpg'
-         //    },
-         //    {
-         //       id: 7,
-         //       src: 'images/wallet/7.jpg'
-         //    },
-         //    {
-         //       id: 8,
-         //       src: 'images/wallet/8.jpg'
-         //    },
-         //    {
-         //       id: 9,
-         //       src: 'images/wallet/9.jpg'
-         //    },
-         //    {
-         //       id: 10,
-         //       src: 'images/wallet/10.jpg'
-         //    },
-         //    {
-         //       id: 11,
-         //       src: 'images/wallet/11.jpg'
-         //    },
-         //    {
-         //       id: 12,
-         //       src: 'images/wallet/12.jpg'
-         //    },
-         //    {
-         //       id: 13,
-         //       src: 'images/wallet/13.jpg'
-         //    },
-         //    {
-         //       id: 14,
-         //       src: 'images/wallet/14.jpg'
-         //    },
-         //    {
-         //       id: 15,
-         //       src: 'images/wallet/15.jpg'
-         //    }
-         // ]
-         ,
+         passportCovers: [],
+         charms: [],
+         wallets: [],
          currentItem: {
             PassportCover: 'images/passport/1.jpg',
             Charm: 'images/charm/0.png',
@@ -229,14 +48,25 @@ export class DataProvider extends Component {
    }
 
    componentDidMount() {
-      axios.get('http://localhost:8001/wallets/')
-      .then(res=>{
-         if(res.data.length>0){
-            this.setState({
-               wallets: res.data
+      axios.all([
+         axios.get('http://localhost:8001/wallets/'),
+         axios.get('http://localhost:8001/passports/'),
+         axios.get('http://localhost:8001/charms/'),
+      ])
+         .then(
+            // res=>{{
+            //    this.setState({
+            //       wallets: res.data
+            //    })
+            // }}
+            axios.spread((walletsRes,passportsRes,charmsRes) => {
+               this.setState({
+                  wallets: walletsRes.data,
+                  passportCovers: passportsRes.data,
+                  charms: charmsRes.data
+               })
             })
-         }
-      })
+         )
    }
 
 
@@ -289,7 +119,6 @@ export class DataProvider extends Component {
       this.setState({
          walletActiveId: id
       })
-      console.log(id)
    }
    charmOnClickedItem(id) {
       this.setState({
