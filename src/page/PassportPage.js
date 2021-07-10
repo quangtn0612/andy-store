@@ -1,17 +1,16 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Col, Container, Row } from 'reactstrap';
+import { Col, Container, Row, Input, Button, Form } from 'reactstrap';
 import Charms from '../component/Charms';
-import CustomerName from '../component/CustomerName';
 import PassportDisplay from '../component/PassportDisplay';
 import Passports from '../component/Passports';
 import './Style.css';
 import {
-  charmOnClickedItemAction, 
-  chooseCharmAction, 
-  choosePassportAction, 
-  onKeyUpAction, 
-  passportOnClickedItemAction, 
+  charmOnClickedItemAction,
+  chooseCharmAction,
+  choosePassportAction,
+  onKeyUpAction,
+  passportOnClickedItemAction,
   updateCartAction
 } from '../actions/passport';
 
@@ -54,8 +53,12 @@ export default function PassportPage() {
     let action = updateCartAction(currentItemOfPassport);
     dispatch(action);
   }
-
-
+  const handleFocus = (event) => {
+    event.target.select();
+  }
+  const onSubmit = (event) => {
+    event.preventDefault();
+  }
   return (
     <Container>
       <Row>
@@ -77,11 +80,24 @@ export default function PassportPage() {
             />
           </Row>
           <Row>
-            <CustomerName
-              onKeyUp={onKeyUp}
-              updateCart={updateCart}
-              Name={Name}
-            />
+            <Form onSubmit={(e) => onSubmit(e)}>
+              <Input
+                type="text"
+                onChange={event => onKeyUp(event)}
+                placeholder={'Type your name'}
+                value={Name}
+                onFocus={handleFocus}
+
+              />
+              <Button
+              type="submit" 
+              className="AddToCartButton" 
+              color="primary" 
+              onClick={updateCart}
+              >
+                Add to cart</Button>
+            </Form>
+
           </Row>
         </Col>
 

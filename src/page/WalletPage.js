@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Col, Container, Row } from 'reactstrap';
-import CustomerName from '../component/CustomerName';
+import { Form, Col, Container, Row, Input, Button } from 'reactstrap';
 import Wallet from '../component/Wallet';
 import WalletDisplay from '../component/WalletDisplay';
 import './Style.css';
@@ -39,6 +38,12 @@ export default function WalletPage() {
       let action = updateCartAction(currentItemOfWallet);
       dispatch(action);
    }
+   const handleFocus = (event) => {
+      event.target.select();
+   }
+   const onSubmit = (event) => {
+      event.preventDefault();
+   }
    return (
       <Container>
          <Row>
@@ -52,11 +57,24 @@ export default function WalletPage() {
                   />
                </Row>
                <Row>
-                  <CustomerName
-                     onKeyUp={onKeyUp}
-                     updateCart={updateCart}
-                     Name={Name}
-                  />
+                  <Form onSubmit={(e)=>onSubmit(e)}>
+                     <Input
+                        type="text"
+                        onChange={event => onKeyUp(event)}
+                        placeholder={'Type your name'}
+                        value={Name}
+                        onFocus={handleFocus}
+                     />
+                     <Button
+                        type="submit"
+                        className="AddToCartButton"
+                        color="primary"
+                        onClick={updateCart}
+                     >
+                        Add to cart
+                     </Button>
+                  </Form>
+                  
                </Row>
             </Col>
             <Col lg={6}>
