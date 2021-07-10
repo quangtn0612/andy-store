@@ -54,11 +54,6 @@ export class DataProvider extends Component {
          axios.get('http://localhost:8001/charms/'),
       ])
          .then(
-            // res=>{{
-            //    this.setState({
-            //       wallets: res.data
-            //    })
-            // }}
             axios.spread((walletsRes,passportsRes,charmsRes) => {
                this.setState({
                   wallets: walletsRes.data,

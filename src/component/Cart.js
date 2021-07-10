@@ -1,25 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Table, Col, Row, Container, Form, FormGroup, Input, Button } from 'reactstrap';
-import { DataContext } from '../context/DataContext';
+import { useSelector, useDispatch } from 'react-redux'
 import './Cart.css';
+import {
+   deleteItemAction
+ } from '../actions/passport'
 
-export default class Cart extends Component{
-   static contextType = DataContext;
+export default function Cart() {
+   const cartItems = useSelector(state => state.passport.cartItems);
+
+   const dispatch = useDispatch();
+   const deleteItem = (theOrder) => {
+      let action = deleteItemAction(theOrder);
+      dispatch(action);
+   }
    
-   render(){
-      const { cartItems, deleteItem } = this.context;
-      return <Container>
-         <Row>
+   return <Container>
+      <Row>
          <Col>
-            <div className ="cartForm">
-               
+            <div className="cartForm">
+
                <h3>Contact detail</h3>
                <Form>
                   <FormGroup>
                      <Input type="text" name="fname1" id="exampleEmail" placeholder="First Name" required />
                   </FormGroup>
-                  <FormGroup>      
-                     <Input type="text" name="lname" id="exampleEmail" placeholder="Last Name" required/>
+                  <FormGroup>
+                     <Input type="text" name="lname" id="exampleEmail" placeholder="Last Name" required />
                   </FormGroup>
                   <FormGroup>
                      <Input type="email" name="email" id="exampleEmail" placeholder="Email" />
@@ -38,18 +45,18 @@ export default class Cart extends Component{
                   </FormGroup>
                   <FormGroup>
                      <Input type="select" name="select" id="State">
-                     <option>NSW</option>
-                     <option>VIC</option>
-                     <option>ACT</option>
-                     <option>QLD</option>
-                     <option>WA</option>
-                     <option>SA</option>
-                     <option>TAS</option>
-                     <option>NT</option>
-                  </Input>
+                        <option>NSW</option>
+                        <option>VIC</option>
+                        <option>ACT</option>
+                        <option>QLD</option>
+                        <option>WA</option>
+                        <option>SA</option>
+                        <option>TAS</option>
+                        <option>NT</option>
+                     </Input>
                   </FormGroup>
                   <FormGroup>
-                     <Input type="text" name="state" id="exampleEmail" placeholder="State" />  
+                     <Input type="text" name="state" id="exampleEmail" placeholder="State" />
                   </FormGroup>
                   <FormGroup>
                      <Input type="text" name="postcode" id="exampleEmail" placeholder="Postcode" />
@@ -59,45 +66,44 @@ export default class Cart extends Component{
                   </FormGroup>
                </Form>
             </div>
-            </Col>
-               <Col lg={6}>
-                  <div className="cartForm">
-                     <h3>Order summary</h3>
-                     <Table>
-                        <thead>
+         </Col>
+         <Col lg={6}>
+            <div className="cartForm">
+               <h3>Order summary</h3>
+               <Table>
+                  <thead>
+                     <tr>
+                        <th>Item</th>
+                        <th>Color</th>
+                        <th>Charm</th>
+                        <th>Name</th>
+                        <th></th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {cartItems.map((item, id) => (
                         <tr>
-                           <th>Item</th>
-                           <th>Color</th>
-                           <th>Charm</th>
-                           <th>Name</th>
-                           <th></th>
+                           <td>{item.item.split('/')[1]}</td>
+                           <td><img src={item.item} width={40} height={40} alt={item.item} /></td>
+                           <td><img src={item.Charm} width={40} height={40} alt={item.Charm} /></td>
+                           <td><span className="cartText">{item.Name}</span></td>
+                           <td><Button color="secondary" onClick={() => deleteItem(id)}>Delete</Button></td>
                         </tr>
-                        </thead>
-                        <tbody>
-                        { cartItems.map((item, id)=>(
-                           
-                           <tr>
-                              <td>{item.item.split('/')[1]}</td>
-                              <td><img src={item.item} width={40} height={40} alt={item.item}/></td>
-                              <td><img src={item.Charm} width={40} height={40} alt={item.Charm}/></td>
-                              <td><span className="cartText">{item.Name}</span></td>
-                              <td><Button color="secondary" onClick={()=>deleteItem(id)}>Delete</Button></td>
-                           </tr>
-                        )) }
-                        <tr>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td>Total: <b>{cartItems.length}</b></td>
-                        </tr>
-                        </tbody>
-                     </Table>  
-                  </div>
-               </Col> 
-         </Row>
-      </Container>
-   }
+                     ))}
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Total: <b>{cartItems.length}</b></td>
+                     </tr>
+                  </tbody>
+               </Table>
+            </div>
+         </Col>
+      </Row>
+   </Container>
+
 }
 //currentItemOfPassport
 //currentItemOfWallet

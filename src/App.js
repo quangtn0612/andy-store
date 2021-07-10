@@ -1,8 +1,8 @@
 import './App.css';
 import Header from './component/Header'
 import Navigation from './component/Navigation'
-import PASSPORT from './page/PassportCover'
-import WALLET from './page/Wallet'
+import PASSPORT from './page/PassportPage'
+import WALLET from './page/WalletPage'
 import {
   BrowserRouter as Router,
   Switch,
