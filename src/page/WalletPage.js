@@ -4,14 +4,7 @@ import { Form, Col, Container, Row, Input, Button } from 'reactstrap';
 import Wallet from '../component/Wallet';
 import WalletDisplay from '../component/WalletDisplay';
 import './Style.css';
-import {
-   updateCartAction,
-} from '../actions/passport';
-import {
-   chooseWalletAction,
-   walletOnClickedItemAction,
-   onKeyUpAction
-} from '../actions/wallet';
+import { createAction } from '@reduxjs/toolkit'
 
 export default function WalletPage() {
    const wallets = useSelector(state => state.wallet.wallets);
@@ -23,20 +16,20 @@ export default function WalletPage() {
    const dispatch = useDispatch();
 
    const chooseWallet = ({ src }) => {
-      let action = chooseWalletAction(src);
-      dispatch(action);
+      let action = createAction('CHOOSE_WALLET_COVER');
+      dispatch(action(src));
    }
    const walletOnClickedItem = (id) => {
-      let action = walletOnClickedItemAction(id);
-      dispatch(action);
+      let action = createAction('WALLET_ONCLICKED_ID');
+      dispatch(action(id));
    }
    const onKeyUp = (event) => {
-      let action = onKeyUpAction(event.target.value);
-      dispatch(action);
+      let action = createAction('ON_KEY_UP');
+      dispatch(action(event.target.value));
    }
    const updateCart = () => {
-      let action = updateCartAction(currentItemOfWallet);
-      dispatch(action);
+      let action = createAction('UPDATE_CART');
+      dispatch(action(currentItemOfWallet));
    }
    const handleFocus = (event) => {
       event.target.select();
