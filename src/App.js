@@ -10,7 +10,10 @@ import {
 } from "react-router-dom";
 import Cart from './component/Cart'
 
+
 function App() {
+  
+
   return (
     <div>
       <Router>

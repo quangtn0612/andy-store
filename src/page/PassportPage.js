@@ -6,11 +6,25 @@ import PassportDisplay from '../component/PassportDisplay';
 import Passports from '../component/Passports';
 import './Style.css';
 import { createAction } from '@reduxjs/toolkit'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 export default function PassportPage() {
-  const passportCovers = useSelector(state => state.passport.passportCovers);
+  const [passportCovers, setPassportCovers] = useState([]);
+  const [charms, setCharms] = useState([]);
+
+  useEffect(() => {
+    axios.all([
+      axios.get('http://localhost:8001/passports/'),
+      axios.get('http://localhost:8001/charms/')
+    ])
+      .then(axios.spread((res1, res2) => {
+        setPassportCovers(res1.data);
+        setCharms(res2.data);
+      }));
+  }, [])
+
   const passportActiveId = useSelector(state => state.passport.passportActiveId);
-  const charms = useSelector(state => state.passport.charms);
   const charmActiveId = useSelector(state => state.passport.charmActiveId);
   const currentItemOfPassport = useSelector(state => state.passport.currentItemOfPassport);
 
@@ -83,10 +97,10 @@ export default function PassportPage() {
 
               />
               <Button
-              type="submit" 
-              className="AddToCartButton" 
-              color="primary" 
-              onClick={updateCart}
+                type="submit"
+                className="AddToCartButton"
+                color="primary"
+                onClick={updateCart}
               >
                 Add to cart</Button>
             </Form>

@@ -5,9 +5,19 @@ import Wallet from '../component/Wallet';
 import WalletDisplay from '../component/WalletDisplay';
 import './Style.css';
 import { createAction } from '@reduxjs/toolkit'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 export default function WalletPage() {
-   const wallets = useSelector(state => state.wallet.wallets);
+   const [wallets, setWallets] = useState([]);
+   useEffect(() => {
+      axios.get('http://localhost:8001/wallets/')
+         .then(res => {
+            setWallets(res.data);
+         })
+   }, [])
+
+
    const walletActiveId = useSelector(state => state.wallet.walletActiveId);
    const currentItemOfWallet = useSelector(state => state.wallet.currentItemOfWallet);
 
@@ -50,7 +60,7 @@ export default function WalletPage() {
                   />
                </Row>
                <Row>
-                  <Form onSubmit={(e)=>onSubmit(e)}>
+                  <Form onSubmit={(e) => onSubmit(e)}>
                      <Input
                         type="text"
                         onChange={event => onKeyUp(event)}
@@ -67,7 +77,7 @@ export default function WalletPage() {
                         Add to cart
                      </Button>
                   </Form>
-                  
+
                </Row>
             </Col>
             <Col lg={6}>
