@@ -1,4 +1,5 @@
 // import axios from 'axios';
+import {createReducer } from '@reduxjs/toolkit'
 
 const initialState = {
   passportCovers: [
@@ -218,8 +219,8 @@ const initialState = {
     Charm: 'images/charm/1.png',
     Name: 'QUANG'
   },
-  passportActiveId: '60dd90742364ee7a22c93bc5', //FIRST ITEM
-  charmActiveId: '60dd90305b9a0f7a0dac61e9', //FIRST ITEM
+  passportActiveId: '60dd90742364ee7a22c93bc5', //FIRST ITEM ID
+  charmActiveId: '60dd90305b9a0f7a0dac61e9', //FIRST ITEM ID
   cartItems: []
 };
 
@@ -229,64 +230,16 @@ const initialState = {
 //   initialState.passportCovers= res.data
 // })
 
-const passportReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'CHOOSE_PASSPORT_COVER': {
-      return {
-        ...state,
-        currentItemOfPassport: {
-          ...state.currentItemOfPassport,
-          item: action.payload //src
-        }
-      }
-    }
-    case 'PASSPORT_ONCLICKED_ID': {
-      return {
-        ...state,
-        passportActiveId: action.payload
-      }
-    }
-    case 'CHOOSE_CHARM': {
-      return {
-        ...state,
-        currentItemOfPassport: {
-          ...state.currentItemOfPassport,
-          Charm: action.payload //src
-        }
-      }
-    }
-    case 'CHARM_ONCLICKED_ID': {
-      return {
-        ...state,
-        charmActiveId: action.payload
-      }
-    }
+const passportReducer = createReducer(initialState, {
+  CHOOSE_PASSPORT_COVER: (state, action) => {state.currentItemOfPassport.item = action.payload},
+  PASSPORT_ONCLICKED_ID: (state, action) => {state.passportActiveId = action.payload},
+  CHOOSE_CHARM: (state, action) => {state.currentItemOfPassport.Charm = action.payload},
+  CHARM_ONCLICKED_ID: (state, action) => {state.charmActiveId = action.payload},
+  ON_KEY_UP: (state, action) => {state.currentItemOfPassport.Name= action.payload},
+  UPDATE_CART:(state, action) => {state.cartItems.push(action.payload)},
+  DELETE_ITEM: (state, action) => {state.cartItems.splice(action.payload, 1)}
+})
 
-    case 'ON_KEY_UP': {
-      return {
-        ...state,
-        currentItemOfPassport:{
-          ...state.currentItemOfPassport,
-          Name: action.payload
-        }
-      }
-    }
-    case 'UPDATE_CART': {
-      return {
-        ...state,
-        cartItems: state.cartItems.concat(action.payload)
-      }
-    }
-    case 'DELETE_ITEM': {
-      const TheOrder = action.payload;
-      return {
-        ...state,
-        cartItems: state.cartItems.slice(0, TheOrder).concat(state.cartItems.slice(TheOrder + 1, state.cartItems.length))
-      }
-    }
-    default:
-      return state;
-  }
-}
+
 
 export default passportReducer;

@@ -2,17 +2,15 @@ import React from 'react';
 import { Table, Col, Row, Container, Form, FormGroup, Input, Button } from 'reactstrap';
 import { useSelector, useDispatch } from 'react-redux'
 import './Cart.css';
-import {
-   deleteItemAction
- } from '../actions/passport'
+import { createAction } from '@reduxjs/toolkit'
 
 export default function Cart() {
    const cartItems = useSelector(state => state.passport.cartItems);
 
    const dispatch = useDispatch();
    const deleteItem = (theOrder) => {
-      let action = deleteItemAction(theOrder);
-      dispatch(action);
+      let action = createAction('DELETE_ITEM');
+      dispatch(action(theOrder));
    }
    
    return <Container>
