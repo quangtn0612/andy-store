@@ -15,8 +15,8 @@ export default function PassportPage() {
 
   useEffect(() => {
     axios.all([
-      axios.get('http://localhost:8001/passports/'),
-      axios.get('http://localhost:8001/charms/')
+      axios.get('https://andy-backend122.herokuapp.com/passports/'),
+      axios.get('https://andy-backend122.herokuapp.com/charms/')
     ])
       .then(axios.spread((res1, res2) => {
         setPassportCovers(res1.data);

@@ -11,7 +11,7 @@ import axios from 'axios'
 export default function WalletPage() {
    const [wallets, setWallets] = useState([]);
    useEffect(() => {
-      axios.get('http://localhost:8001/wallets/')
+      axios.get('https://andy-backend122.herokuapp.com/wallets/')
          .then(res => {
             setWallets(res.data);
          })
