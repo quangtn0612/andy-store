@@ -5,7 +5,7 @@ import Wallet from '../component/Wallet';
 import WalletDisplay from '../component/WalletDisplay';
 import './Style.css';
 import { createAction } from '@reduxjs/toolkit';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { getWallets } from '../reducers/action/walletAction';
 
 export default function WalletPage() {

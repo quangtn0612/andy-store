@@ -6,7 +6,7 @@ import PassportDisplay from '../component/PassportDisplay';
 import Passports from '../component/Passports';
 import './Style.css';
 import { createAction } from '@reduxjs/toolkit';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { getPassportCovers, getCharms } from '../reducers/action/passportAction';
 
 export default function PassportPage() {
