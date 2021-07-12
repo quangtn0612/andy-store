@@ -12,8 +12,6 @@ import Cart from './component/Cart'
 
 
 function App() {
-  
-
   return (
     <div>
       <Router>

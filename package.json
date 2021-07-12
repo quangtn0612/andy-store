@@ -1,5 +1,6 @@
 {
   "name": "andy-store",
+  "homepage": "/passport",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -17,6 +18,8 @@
     "react-scripts": "^4.0.1",
     "reactstrap": "^8.7.1",
     "redux": "^4.1.0",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.3.0",
     "require": "^2.4.20",
     "web-vitals": "^0.2.4"
   },
@@ -24,7 +27,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "react-script build",
+    "deploy": "gh-page -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -43,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
   }
 }

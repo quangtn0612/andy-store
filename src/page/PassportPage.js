@@ -5,30 +5,25 @@ import Charms from '../component/Charms';
 import PassportDisplay from '../component/PassportDisplay';
 import Passports from '../component/Passports';
 import './Style.css';
-import { createAction } from '@reduxjs/toolkit'
-import { useState, useEffect } from 'react'
-import axios from 'axios'
+import { createAction } from '@reduxjs/toolkit';
+import { useState, useEffect } from 'react';
+import { getPassportCovers, getCharms } from '../reducers/action/passportAction';
 
 export default function PassportPage() {
-  const [passportCovers, setPassportCovers] = useState([]);
-  const [charms, setCharms] = useState([]);
+  const dispatch = useDispatch();
+  const passportCovers = useSelector(state => state.passport.passportCovers);
+  const charms = useSelector(state => state.passport.charms);
 
   useEffect(() => {
-    axios.all([
-      axios.get('https://andy-backend122.herokuapp.com/passports/'),
-      axios.get('https://andy-backend122.herokuapp.com/charms/')
-    ])
-      .then(axios.spread((res1, res2) => {
-        setPassportCovers(res1.data);
-        setCharms(res2.data);
-      }));
-  }, [])
+    dispatch(getPassportCovers())
+    dispatch(getCharms())
+  }, [dispatch])
 
   const passportActiveId = useSelector(state => state.passport.passportActiveId);
+
   const charmActiveId = useSelector(state => state.passport.charmActiveId);
   const currentItemOfPassport = useSelector(state => state.passport.currentItemOfPassport);
 
-  const dispatch = useDispatch();
 
   const { Name, item, Charm } = currentItemOfPassport;
 

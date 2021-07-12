@@ -4,18 +4,17 @@ import { Form, Col, Container, Row, Input, Button } from 'reactstrap';
 import Wallet from '../component/Wallet';
 import WalletDisplay from '../component/WalletDisplay';
 import './Style.css';
-import { createAction } from '@reduxjs/toolkit'
-import { useState, useEffect } from 'react'
-import axios from 'axios'
+import { createAction } from '@reduxjs/toolkit';
+import { useState, useEffect } from 'react';
+import { getWallets } from '../reducers/action/walletAction';
 
 export default function WalletPage() {
-   const [wallets, setWallets] = useState([]);
+   const dispatch = useDispatch();
+   const wallets = useSelector(state => state.wallet.wallets);
+   const { loading, error } = wallets;
    useEffect(() => {
-      axios.get('https://andy-backend122.herokuapp.com/wallets/')
-         .then(res => {
-            setWallets(res.data);
-         })
-   }, [])
+      dispatch(getWallets())
+   }, [dispatch])
 
 
    const walletActiveId = useSelector(state => state.wallet.walletActiveId);
@@ -23,7 +22,6 @@ export default function WalletPage() {
 
    const { Name, item } = currentItemOfWallet;
 
-   const dispatch = useDispatch();
 
    const chooseWallet = ({ src }) => {
       let action = createAction('CHOOSE_WALLET_COVER');
@@ -49,9 +47,13 @@ export default function WalletPage() {
    }
    return (
       <Container>
+
          <Row>
             <Col >
+               {loading ? "Loading..." : error ? error.message : ''}
+
                <Row>
+
                   <Wallet
                      wallets={wallets}
                      walletActiveId={walletActiveId}

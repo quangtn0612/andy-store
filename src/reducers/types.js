@@ -1,0 +1,9 @@
+export const CHOOSE_WALLET_COVER = 'CHOOSE_WALLET_COVER';
+export const WALLET_ONCLICKED_ID = 'WALLET_ONCLICKED_ID';
+export const ON_KEY_UP = 'ON_KEY_UP';
+export const GET_WALLETS = 'GET_WALLETS';
+export const WALLETS_ERROR = 'WALLETS_ERROR';
+export const GET_PASSPORTS = 'GET_PASSPORTS';
+export const PASSPORTS_ERROR = 'PASSPORTS_ERROR';
+export const GET_CHARMS = 'GET_CHARMS';
+export const CHARMS_ERROR = 'CHARMS_ERROR';
