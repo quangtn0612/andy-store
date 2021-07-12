@@ -26,8 +26,11 @@ cd andy-store
 ## Deployment process
 1. Front-end: https://andystore-2e55b.web.app/
 2. Back-end: 
+  
   i. https://andy-backend122.herokuapp.com/passports
+  
   ii. https://andy-backend122.herokuapp.com/wallets
+  
   iii. https://andy-backend122.herokuapp.com/charms
 
 ## What can be improve
