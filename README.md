@@ -5,7 +5,7 @@ Andy Store is a small eCommerce application that is selling custom passport cove
 React, redux, mongodb, expressjs
 # 2. Local Development Guideline
 ## Prerequisites
-Markup : * NodeJS (v10 ỏ above), npm and yarn
+Markup : * NodeJS (v10 or above), npm and yarn
 ## Setup Local Development Enviroment
 1. Clone the project to local machine and go to the folder
 ```
@@ -25,7 +25,10 @@ cd andy-store
 
 ## Deployment process
 1. Front-end: https://andystore-2e55b.web.app/
-2. Back-end: https://andy-backend122.herokuapp.com/
+2. Back-end: 
+  i. https://andy-backend122.herokuapp.com/passports
+  ii. https://andy-backend122.herokuapp.com/wallets
+  iii. https://andy-backend122.herokuapp.com/charms
 
 ## What can be improve
 1. Create user login and logout
@@ -33,3 +36,4 @@ cd andy-store
 3. Create check out page
 4. Optimise loading speed
 5. Write unit test for back and front-end
+6. Implement SEO for the website
