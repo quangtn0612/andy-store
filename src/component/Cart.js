@@ -85,7 +85,17 @@ export default function Cart() {
                            <td><img src={item.item} width={40} height={40} alt={item.item} /></td>
                            <td><img src={item.Charm} width={40} height={40} alt={item.Charm} /></td>
                            <td><span className="cartText">{item.Name}</span></td>
-                           <td><Button color="secondary" onClick={() => deleteItem(id)}>Delete</Button></td>
+                           <td>
+                              <Button 
+                                 color="secondary" 
+                                 onClick={() => {
+                                    if(window.confirm('Are you sure you want to delete this item?')){
+                                       deleteItem(id)
+                                    }
+                                 }}
+                              >
+                                 Delete
+                              </Button></td>
                         </tr>
                      ))}
                      <tr>
