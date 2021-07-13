@@ -19,9 +19,9 @@ cd andy-store
 
 ## Funtionalities
 1. Choose passport, charm and wallet
-2. Showing passport covers and wakllet
-3. Customer name, collor
-4. Cart: Add item and delete item
+2. Fetch data(passport covers, charms and wallets) from heroku
+3. Custome name, collor
+4. Add item and delete item in cart
 
 ## Deployment process
 1. Front-end: https://andystore-2e55b.web.app/
