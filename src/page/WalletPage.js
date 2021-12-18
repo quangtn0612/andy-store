@@ -69,6 +69,7 @@ export default function WalletPage() {
                         placeholder={'Type your name'}
                         value={Name}
                         onFocus={handleFocus}
+                        maxLength="8"
                      />
                      <Button
                         type="submit"
