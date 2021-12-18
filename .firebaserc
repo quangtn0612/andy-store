@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "andy-store-6fb06"
-  }
+    "default": "andy-store-6fb06",
+    "andystore": "andystore-2e55b"
+  },
+  "targets": {}
 }
