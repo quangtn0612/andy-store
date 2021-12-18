@@ -36,9 +36,9 @@ export default function PassportPage() {
     const action = createAction('PASSPORT_ONCLICKED_ID')
     dispatch(action(id));
   }
-  const chooseCharm = (event) => {
+  const chooseCharm = ({ src }) => {
     let action = createAction('CHOOSE_CHARM');
-    dispatch(action(event.target.src.slice(22,)));
+    dispatch(action(src));
   }
 
   const charmOnClickedItem = (id) => {
